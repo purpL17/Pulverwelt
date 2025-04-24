@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie | Pulverwelt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Splash screen -->
+  <div class="splash">
+    <img alt="Pulverwelt Logo" class="splash-logo" src="images/Logo.png"/>
+  </div>
+
+  <!-- Main site content -->
+  <div class="site-content">
+    <header class="main-header">
+      <div class="center-container">
+        <a href="index.html">
+          <img src="images/Logo-removebg-preview (1).png" alt="Pulverwelt Logo" class="header-logo">
+        </a>
+
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">Über uns</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="leistungen.html">Leistungen</a></li>
+          </ul>
+        </nav>
+
+        <button class="hamburger" id="hamburger" aria-label="Menü">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="fullscreen-nav" id="navOverlay">
+      <ul class="overlay-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Über uns</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+      </ul>
+    </div>
+
+    <main>
+      <section class="gallery-intro" data-aos="fade-up">
+        <h1>Unsere Galerie</h1>
+        <p>Klicke auf das Rad, um die Galerie anzuzeigen</p>
+        <div id="galleryTrigger" class="wheel-spinner">
+          <img src="images/wheel.png" alt="Gallery Wheel" class="wheel-image">
+        </div>
+        </div>
+      </section>
+    
+      <section id="gallerySection" class="gallery-grid hidden">
+        <!-- Add your 20 images like below -->
+        <img src="images/image11.jpg" alt="Gallery Image">
+        <img src="images/image12.jpg" alt="Gallery Image">
+        <img src="images/image13.jpg" alt="Gallery Image">
+        <img src="images/image14.jpg" alt="Gallery Image">
+        <img src="images/image15.jpg" alt="Gallery Image">
+        <img src="images/image16.jpg" alt="Gallery Image">
+        <img src="images/image17.jpg" alt="Gallery Image">
+        <img src="images/image18.jpg" alt="Gallery Image">
+        <img src="images/image19.jpg" alt="Gallery Image">
+        <img src="images/image20.jpg" alt="Gallery Image">
+        <img src="images/image21.jpg" alt="Gallery Image">
+        <img src="images/image22.jpg" alt="Gallery Image">
+        <img src="images/image23.jpg" alt="Gallery Image">
+        <img src="images/image24.jpg" alt="Gallery Image">
+        <img src="images/image25.jpg" alt="Gallery Image">
+        <img src="images/image26.jpg" alt="Gallery Image">
+        <img src="images/image27.jpg" alt="Gallery Image">
+        <img src="images/image28.jpg" alt="Gallery Image">
+        <img src="images/image29.jpg" alt="Gallery Image">
+        <img src="images/image30.jpg" alt="Gallery Image">
+      </section>
+    </main>
+
+    <footer>
+      <div class="socials">
+        <a href="https://www.instagram.com/pulverwelt/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.kleinanzeigen.de/pro/pulverwelt" target="_blank"><i class="fas fa-store"></i></a>
+        <a href="https://www.tiktok.com/@pulverwelt" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/pulverwelt/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <p>© 2025 Pulverwelt. Alle Rechte vorbehalten.</p>
+    </footer>
+  </div>
+
+  <!-- Splash logic -->
+  <script>
+    window.addEventListener("load", () => {
+      const splash = document.querySelector(".splash");
+      const content = document.querySelector(".site-content");
+
+      document.body.classList.add("no-scroll");
+
+      setTimeout(() => {
+        splash.classList.add("fade-out");
+
+        setTimeout(() => {
+          content.classList.add("visible");
+          document.body.classList.remove("no-scroll");
+        }, 250);
+      }, 1200);
+    });
+  </script>
+
+  <!-- Page transitions -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("animate-in");
+
+      const links = document.querySelectorAll("a[href$='.html']");
+      let isTransitioning = false;
+
+      links.forEach(link => {
+        link.addEventListener("click", function (e) {
+          if (isTransitioning) return;
+          e.preventDefault();
+
+          isTransitioning = true;
+          const target = this.href;
+
+          document.body.classList.remove("animate-in");
+          document.body.classList.add("animate-out");
+
+          setTimeout(() => {
+            window.location.href = target;
+          }, 500);
+        });
+      });
+    });
+  </script>
+
+  <!-- Menu toggle logic -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.getElementById('hamburger');
+      const navOverlay = document.getElementById('navOverlay');
+
+      hamburger.addEventListener('click', () => {
+        if (navOverlay.classList.contains("active")) {
+          navOverlay.classList.add("navOverlay-closing");
+          hamburger.classList.remove("active");
+
+          setTimeout(() => {
+            navOverlay.classList.remove("active", "navOverlay-closing");
+          }, 400);
+        } else {
+          navOverlay.classList.add("active");
+          hamburger.classList.add("active");
+        }
+      });
+
+      document.querySelectorAll('.overlay-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          navOverlay.classList.add("navOverlay-closing");
+          hamburger.classList.remove("active");
+
+          setTimeout(() => {
+            navOverlay.classList.remove("active", "navOverlay-closing");
+          }, 400);
+        });
+      });
+    });
+  </script>
+
+<script>
+const wheel = document.getElementById("galleryTrigger");
+const gallery = document.getElementById("gallerySection");
+
+wheel.addEventListener("click", () => {
+  wheel.classList.add("spin");
+
+  setTimeout(() => {
+    gallery.classList.toggle("visible");
+    wheel.classList.remove("spin");
+  }, 1000);
+});
+</script>
+</body>
+</html>

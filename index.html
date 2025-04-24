@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Pulverwelt | Pulverbeschichtung</title>
+
+  <!-- ✅ FONTAWESOME ICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="style.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</head>
+
+<body>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("animate-in");
+      const links = document.querySelectorAll("a[href$='.html']");
+      let isTransitioning = false;
+      links.forEach(link => {
+        link.addEventListener("click", function (e) {
+          if (isTransitioning) return;
+          e.preventDefault();
+          isTransitioning = true;
+          const target = this.href;
+          document.body.classList.remove("animate-in");
+          document.body.classList.add("animate-out");
+          setTimeout(() => {
+            window.location.href = target;
+          }, 500);
+        });
+      });
+    });
+  </script>
+
+  <!-- Splash screen -->
+  <div class="splash">
+    <img alt="Pulverwelt Logo" class="splash-logo" src="images/Logo.png"/>
+  </div>
+
+  <!-- Main site -->
+  <div class="site-content">
+<header class="main-header">
+  <div class="center-container">
+    <a href="index.html">
+      <img src="images/Logo-removebg-preview (1).png" alt="Pulverwelt Logo" class="header-logo" />
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav class="nav-bar desktop-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Über uns</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="fullscreen-nav" id="navOverlay">
+  <ul class="overlay-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">Über uns</a></li>
+    <li><a href="galerie.html">Galerie</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="leistungen.html">Leistungen</a></li>
+  </ul>
+</div>
+
+<main>
+  <div class="scroll-row top-row">
+    <div class="scroll-track">
+      <img alt="" src="images/image1.jpg"/>
+      <img alt="" src="images/image2.jpg"/>
+      <img alt="" src="images/image3.jpg"/>
+      <img alt="" src="images/image4.jpg"/>
+      <img alt="" src="images/image5.jpg"/>
+    </div>
+  </div>
+  <div class="scroll-row bottom-row">
+    <div class="scroll-track">
+      <img alt="" src="images/image6.jpg"/>
+      <img alt="" src="images/image7.jpg"/>
+      <img alt="" src="images/image8.jpg"/>
+      <img alt="" src="images/image9.jpg"/>
+      <img alt="" src="images/image10.jpg"/>
+    </div>
+  </div>
+
+  <section id="services" class="services-section" data-aos="fade-up">
+    <div class="container">
+      <h2>Unsere Leistungen</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-spray-can-sparkles"></i>
+          <h3>Pulverbeschichtung</h3>
+          <p>Hochwertige Pulverbeschichtung in vielen Farben und Ausführungen für Metallteile aller Art.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-burn"></i>
+          <h3>Sandstrahlen</h3>
+          <p>Effektive Entfernung von Rost, Farbe und Verunreinigungen – optimale Vorbereitung für Beschichtungen.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-paint-roller"></i>
+          <h3>Individuelle Farbgestaltung</h3>
+          <p>Wir bieten kreative Lösungen für maßgeschneiderte Farbwünsche auf verschiedensten Oberflächen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Write a Review -->
+<section id="bewertungen" class="reviews-section" data-aos="fade-up">
+    <div class="container">
+      <h2>Bewertungen</h2>
+      <form class="review-form" id="reviewForm">
+        <input type="text" id="reviewerName" placeholder="Ihr Name" required />
+        <textarea id="reviewText" placeholder="Ihre Bewertung" required></textarea>
+        <input type="file" id="reviewImage" accept="image/*" />
+        <button type="submit">Bewertung absenden</button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- See Reviews -->
+  <section id="review-display" class="fullwidth-section review-display-section" data-aos="fade-up">
+    <div class="container">
+      <h2>Was unsere Kunden sagen</h2>
+      <div class="review-carousel">
+        <button class="carousel-btn" id="prevReview"><i class="fas fa-chevron-left"></i></button>
+        <div class="reviews-wrapper" id="reviewsContainer">
+
+        </div>
+        <button class="carousel-btn" id="nextReview"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+  
+  <section id="kontakt-form" class="contact-form-section" data-aos="fade-up">
+    <div class="container two-column-contact">
+      <!-- Left: Contact Form -->
+      <div class="form-area">
+        <h2>Anfrage</h2>
+        <form class="contact-form" action="mailto:Pulverwelt@web.de" method="POST" enctype="text/plain">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="Name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="Email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Nachricht</label>
+            <textarea id="message" name="Nachricht" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="form-btn">Absenden</button>
+        </form>
+      </div>
+  
+      <!-- Right: Google Map -->
+      <div class="map-area">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2632.053242154448!2d8.87380597612955!3d48.72357431018496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479760c6b9442e3f%3A0xd1a1559b2fb86bc3!2sNeulandweg%201%2C%2075395%20Ostelsheim!5e0!3m2!1sen!2sde!4v1745502072461!5m2!1sen!2sde"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column footer-logo">
+      <img src="images/Logo-removebg-preview (1).png" alt="Pulverwelt Logo" />
+    </div>
+    <div class="footer-column footer-contact">
+      <h4>Kontakt</h4>
+      <p>Telefon: +49 152 3209 7432</p>
+      <p>E-Mail: <a href="mailto:Pulverwelt@web.de">Pulverwelt@web.de</a></p>
+    </div>
+    <div class="footer-column footer-socials">
+      <h4>Folgen Sie uns</h4>
+      <div class="social-links">
+        <a href="https://www.instagram.com/pulverwelt/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.kleinanzeigen.de/pro/pulverwelt" target="_blank"><i class="fas fa-store"></i></a>
+        <a href="https://www.tiktok.com/@pulverwelt" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/pulverwelt/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </div>
+  <p class="footer-bottom">© 2025 Pulverwelt. Website im Aufbau.</p>
+</footer>
+  </div> <!-- END site-content -->
+  <button id="scrollToTopBtn" aria-label="Nach oben scrollen">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ once: true });</script>
+
+<script>
+  window.addEventListener("load", () => {
+    const splash = document.querySelector(".splash");
+    const content = document.querySelector(".site-content");
+
+    document.body.classList.add("no-scroll");
+    setTimeout(() => {
+      splash.classList.add("fade-out");
+      setTimeout(() => {
+        content.classList.add("visible");
+        document.body.classList.remove("no-scroll");
+      }, 250);
+    }, 1200);
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.getElementById('hamburger');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openMenu() {
+      navOverlay.classList.remove("navOverlay-closing");
+      navOverlay.classList.add("active");
+      hamburger.classList.add("active");
+      document.body.classList.add("no-scroll");
+    }
+
+    function closeMenu() {
+      navOverlay.classList.add("navOverlay-closing");
+      hamburger.classList.remove("active");
+      setTimeout(() => {
+        navOverlay.classList.remove("active");
+        navOverlay.classList.remove("navOverlay-closing");
+        document.body.classList.remove("no-scroll");
+      }, 400);
+    }
+
+    hamburger.addEventListener("click", () => {
+      if (navOverlay.classList.contains("active")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    document.querySelectorAll('.overlay-menu a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    function cloneImages(trackSelector) {
+      const track = document.querySelector(trackSelector);
+      if (!track) return;
+
+      const images = Array.from(track.querySelectorAll("img"));
+      const totalWidth = images.reduce((sum, img) => sum + img.getBoundingClientRect().width + 30, 0);
+      const screenWidth = window.innerWidth;
+      const neededClones = Math.ceil((screenWidth * 2) / totalWidth);
+
+      for (let i = 0; i < neededClones; i++) {
+        images.forEach(img => {
+          const clone = img.cloneNode(true);
+          track.appendChild(clone);
+        });
+      }
+    }
+
+    cloneImages(".top-row .scroll-track");
+    cloneImages(".bottom-row .scroll-track");
+  });
+</script>
+
+<!-- Scroll to Top Button Logic -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+  
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.style.display = "flex";
+        } else {
+          scrollToTopBtn.style.display = "none";
+        }
+      });
+  
+      scrollToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+  </script>
+<script>
+    const wrapper = document.getElementById('reviewsWrapper');
+    const reviewForm = document.getElementById('reviewForm');
+  
+    const badWords = ['shit', 'fuck', 'ass', 'bitch']; // Extend as needed
+  
+    function censorText(text) {
+      let censored = text;
+      badWords.forEach(word => {
+        const regex = new RegExp(word, 'gi');
+        censored = censored.replace(regex, '***');
+      });
+      return censored;
+    }
+  
+    reviewForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('reviewerName').value;
+      const text = document.getElementById('reviewText').value;
+      const fileInput = document.getElementById('reviewImage');
+  
+      const card = document.createElement('div');
+      card.className = 'review-card';
+  
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.innerHTML = '✕';
+      deleteBtn.onclick = () => card.remove();
+  
+      const nameTag = document.createElement('strong');
+      nameTag.innerText = name;
+  
+      const reviewPara = document.createElement('p');
+      reviewPara.innerText = censorText(text);
+  
+      card.appendChild(deleteBtn);
+      card.appendChild(nameTag);
+      card.appendChild(reviewPara);
+  
+      if (fileInput.files[0]) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(fileInput.files[0]);
+        card.appendChild(img);
+      }
+  
+      wrapper.appendChild(card);
+      reviewForm.reset();
+    });
+  
+    function scrollReviews(dir) {
+      wrapper.scrollBy({
+        left: dir * 300,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("reviewsContainer");
+      document.getElementById("prevReview").addEventListener("click", () => {
+        container.scrollBy({ left: -320, behavior: "smooth" });
+      });
+      document.getElementById("nextReview").addEventListener("click", () => {
+        container.scrollBy({ left: 320, behavior: "smooth" });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("reviewForm");
+      const nameInput = document.getElementById("reviewerName");
+      const textInput = document.getElementById("reviewText");
+      const imageInput = document.getElementById("reviewImage");
+      const reviewsContainer = document.getElementById("reviewsContainer");
+  
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+  
+        const name = nameInput.value.trim();
+        const text = textInput.value.trim();
+        const image = imageInput.files[0];
+  
+        if (!name || !text) {
+          alert("Bitte füllen Sie alle Felder aus.");
+          return;
+        }
+  
+        const reader = new FileReader();
+        reader.onload = function () {
+          const imgURL = image ? reader.result : "images/default-review.jpg";
+  
+          const newReview = document.createElement("div");
+          newReview.classList.add("review-card");
+          newReview.innerHTML = `
+  <p><strong>${sanitize(name)}</strong></p>
+  <p>${sanitize(text)}</p>
+  <img src="${imgURL}" alt="User Review Image">
+  <button class="delete-review" aria-label="Bewertung löschen">✖</button>
+`;
+
+newReview.querySelector(".delete-review").addEventListener("click", () => {
+  if (confirm("Diese Bewertung wirklich löschen?")) {
+    newReview.remove();
+  }
+});
+  
+          reviewsContainer.prepend(newReview);
+  
+          form.reset();
+          alert("Danke für Ihre Bewertung!");
+        };
+  
+        if (image) {
+          reader.readAsDataURL(image);
+        } else {
+          reader.onload(); // simulate if no image
+        }
+      });
+  
+      function sanitize(str) {
+        const temp = document.createElement("div");
+        temp.textContent = str;
+        return temp.innerHTML;
+      }
+    });
+  </script>
+  <script>
+    AOS.init({
+      once: true, // Only animate once
+      duration: 800, // Animation duration in ms
+      easing: 'ease-out-cubic' // Smooth animation
+    });
+  </script>
+</body>
+</html>

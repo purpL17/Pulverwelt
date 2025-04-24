@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über uns | Pulverwelt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</head>
+
+<body>
+  <!-- Splash screen -->
+  <div class="splash">
+    <img src="images/Logo.png" alt="Pulverwelt Logo" class="splash-logo" />
+  </div>
+
+  <!-- Main site -->
+  <div class="site-content">
+    <header class="main-header">
+      <div class="center-container">
+        <a href="index.html">
+          <img src="images/Logo-removebg-preview (1).png" alt="Pulverwelt Logo" class="header-logo" />
+        </a>
+
+        <!-- Desktop navigation -->
+        <nav class="nav-bar desktop-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">Über uns</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="leistungen.html">Leistungen</a></li>
+          </ul>
+        </nav>
+
+        <!-- Mobile hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Fullscreen mobile menu overlay -->
+    <div class="fullscreen-nav" id="navOverlay">
+
+      <ul class="overlay-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Über uns</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+      </ul>
+    </div>
+
+    <main>
+      <section>
+        <h1>Unsere Geschichte</h1>
+        <p>Erfahren Sie mehr über unser Team und unsere Leidenschaft.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="socials">
+        <a href="https://www.instagram.com/pulverwelt/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.kleinanzeigen.de/pro/pulverwelt" target="_blank"><i class="fas fa-store"></i></a>
+        <a href="https://www.tiktok.com/@pulverwelt" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/pulverwelt/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <p>© 2025 Pulverwelt. Alle Rechte vorbehalten.</p>
+    </footer>
+  </div>
+
+  <!-- Splash logic -->
+  <script>
+    window.addEventListener("load", () => {
+      const splash = document.querySelector(".splash");
+      const content = document.querySelector(".site-content");
+
+      document.body.classList.add("no-scroll");
+
+      setTimeout(() => {
+        splash.classList.add("fade-out");
+
+        setTimeout(() => {
+          content.classList.add("visible");
+          document.body.classList.remove("no-scroll");
+        }, 250);
+      }, 1200);
+    });
+  </script>
+
+  <!-- Page transition -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("animate-in");
+
+      const links = document.querySelectorAll("a[href$='.html']");
+      let isTransitioning = false;
+
+      links.forEach(link => {
+        link.addEventListener("click", function (e) {
+          if (isTransitioning) return;
+          e.preventDefault();
+
+          isTransitioning = true;
+          const target = this.href;
+
+          document.body.classList.remove("animate-in");
+          document.body.classList.add("animate-out");
+
+          setTimeout(() => {
+            window.location.href = target;
+          }, 500);
+        });
+      });
+    });
+  </script>
+
+  <!-- Menu toggle behavior -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.getElementById('hamburger');
+      const navOverlay = document.getElementById('navOverlay');
+  
+      function openMenu() {
+        navOverlay.classList.remove("navOverlay-closing");
+        navOverlay.classList.add("active");
+        hamburger.classList.add("active");
+        document.body.classList.add("no-scroll");
+      }
+  
+      function closeMenu() {
+        navOverlay.classList.add("navOverlay-closing");
+        hamburger.classList.remove("active");
+  
+        setTimeout(() => {
+          navOverlay.classList.remove("active");
+          navOverlay.classList.remove("navOverlay-closing");
+          document.body.classList.remove("no-scroll");
+        }, 400); // match fade out animation time
+      }
+  
+      // ⛔ THIS PART FIXES THE X NOT WORKING:
+      hamburger.addEventListener("click", () => {
+        if (navOverlay.classList.contains("active")) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+  
+      // 🔗 Close when clicking a menu link
+      document.querySelectorAll('.overlay-menu a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    });
+  </script>
+</body>
+</html>
